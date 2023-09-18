@@ -33,8 +33,16 @@
         <td th:text="${user.getName()}"></td>
         <td th:text="${user.getSurname()}"></td>
         <td th:text="${user.getAge()}"></td>
-        <td><a th:href="@{/users/{id}/update(id=${user.getId()})}">update</a>
-        <a th:href="@{/users/delete/{id}(id=${user.getId()})}">delete</a>
+        <td>
+            <form th:action="@{/users/{id}/update(id=${user.getId()})}" method="get">
+                <input type="hidden" name="_method" value="UPDATE" />
+                <button type="submit">update</button>
+            </form>
+            <form th:action="@{/users/delete/{id}(id=${user.getId()})}" method="post">
+                <input type="hidden" name="_method" value="DELETE" />
+                <button type="submit">delete</button>
+            </form>
+        </td>
     </tr>
 </table>
 <a href="users/new"><input type="button" value="Create new user"></a>
